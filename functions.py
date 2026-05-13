@@ -24,9 +24,9 @@ def main():
     word = pick_randon_word()
     word_shown = ["_" for _ in range(len(word))]
     guessed_wrong = []
-    guessed_right = []
+    # guessed_right = []
     while tries > 0:
-        guessed = guessed_wrong + guessed_right
+        guessed = guessed_wrong + word_shown #guessed_right
         print(f"Word now is: {word_shown}")
         print('===========================')
         print(f"Guessed: {guessed_wrong}")
@@ -42,10 +42,13 @@ def main():
         if check(current,word):
             print("The letter is in the word.\n")
             word_shown = fill_word(word_shown, word, current)
-            guessed_right.append(current)
+            # guessed_right.append(current)
             if "_" not in word_shown:
                 print(f"Congrats! You guessed it in {10 - tries} guesses.\n")
-                print(f"The word was: {word}")
+                #print(f"The word was: {word}")
+                print('===========================')
+                print(word_shown)
+                print('===========================')
                 break
         else:
             print("This letter is not in the word.\n")
@@ -54,5 +57,8 @@ def main():
                 print(f"No more guesses left, the word was: {word}")
                 break
             guessed_wrong.append(current)
+
+
+
 
 
