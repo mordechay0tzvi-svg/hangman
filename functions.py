@@ -50,6 +50,9 @@ def main():
         else:
             print("This letter is not in the word.\n")
             tries -= 1
+            if tries == 0:
+                print(f"No more guesses left, the word was: {word}")
+                break
             guessed_wrong.append(current)
-    print(f"No more guesses left, the word was: {word}")
+
 

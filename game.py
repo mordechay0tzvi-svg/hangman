@@ -1,2 +1,2 @@
-from funcs import main
+from functions import main
 main()
