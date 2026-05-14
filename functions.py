@@ -19,11 +19,14 @@ def fill_word(word_guessed, word, letter):
             word_guessed[place] = letter
     return word_guessed
 
-def win_announcement(tries, word_shown):
-    print(f"Congrats! You guessed it in {10 - tries} guesses.\n")
-    print('===========================')
-    print("The word was:", "".join(word_shown))
-    print('===========================')
+def win_announcement(tries, word_shown, attempts):
+    guesses_used = attempts - tries
+    print("\n🎉✨ AMAZING JOB! ✨🎉")
+    print(f"You guessed the word in {guesses_used} guesses! 🥳")
+    print("===================================")
+    print("🏆 The word was:", "".join(word_shown))
+    print("===================================")
+    print("👏 You nailed it! Great work! 😄\n")
 
 def round_start(word_shown, guessed_wrong, tries):
     print("Word:", " ".join(word_shown))
@@ -31,10 +34,14 @@ def round_start(word_shown, guessed_wrong, tries):
     print("Wrong guesses:", " ".join(guessed_wrong))
     print(f"Tries left: {tries}")
 
-def main():
+def game_start():
     print("🎮 Welcome to Hangman!")
     print("Guess the hidden word.\n")
-    tries = 10
+
+def main():
+    ATTEMPTS = 7
+    game_start()
+    tries = ATTEMPTS
     word = pick_randon_word()
     word_shown = ["_" for _ in range(len(word))]
     guessed_wrong = []
@@ -53,7 +60,7 @@ def main():
             print(f"✅ '{current}' is in the word!\n")
             word_shown = fill_word(word_shown, word, current)
             if "_" not in word_shown:
-                win_announcement(tries, word_shown)
+                win_announcement(tries, word_shown, ATTEMPTS)
                 break
         else:
             print(f"❌ '{current}' is not in the word.\n")
