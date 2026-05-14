@@ -20,16 +20,18 @@ def fill_word(word_guessed, word, letter):
     return word_guessed
 
 def main():
+    print("🎮 Welcome to Hangman!")
+    print("Guess the hidden word.\n")
     tries = 10
     word = pick_randon_word()
     word_shown = ["_" for _ in range(len(word))]
     guessed_wrong = []
     # guessed_right = []
     while tries > 0:
-        guessed = guessed_wrong + word_shown #guessed_right
-        print(f"Word now is: {word_shown}")
+        guessed = guessed_wrong + word_shown
+        print("Word:", " ".join(word_shown))
         print('===========================')
-        print(f"Guessed: {guessed_wrong}")
+        print("Wrong guesses:", " ".join(guessed_wrong))
         print(f"Tries left: {tries}")
         print('\n\n')
         current = input("Guess a letter: ").lower()
@@ -40,18 +42,16 @@ def main():
             print("You've already guessed it.\n")
             continue
         if check(current,word):
-            print("The letter is in the word.\n")
+            print(f"✅ '{current}' is in the word!\n")
             word_shown = fill_word(word_shown, word, current)
-            # guessed_right.append(current)
             if "_" not in word_shown:
                 print(f"Congrats! You guessed it in {10 - tries} guesses.\n")
-                #print(f"The word was: {word}")
                 print('===========================')
-                print(word_shown)
+                print("The word was:", "".join(word_shown))
                 print('===========================')
                 break
         else:
-            print("This letter is not in the word.\n")
+            print(f"❌ '{current}' is not in the word.\n")
             tries -= 1
             if tries == 0:
                 print(f"No more guesses left, the word was: {word}")
